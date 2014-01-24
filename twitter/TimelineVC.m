@@ -73,7 +73,9 @@
 
     Tweet *tweet = self.tweets[indexPath.row];
     cell.tweetText.text = tweet.text;
+    [cell.tweetText sizeToFit];
     cell.twittersName.text = tweet.screenName;
+    [cell.twittersName sizeToFit];
     
     
     NSURLRequest *request = [NSURLRequest requestWithURL:tweet.profileImageUrl];
@@ -88,12 +90,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
    // NSLog(@"heightForRowAtIndexPath");
     Tweet *tweet = self.tweets[indexPath.row];
-    CGRect frame = [tweet.text boundingRectWithSize:CGSizeMake(300.0f, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]} context:nil];
+    CGRect frame = [tweet.text boundingRectWithSize:CGSizeMake(200.0f, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]} context:nil];
     float height = frame.size.height;
 
     float diffHeight = ((34.0 + height) - 64.0);
     diffHeight = ( diffHeight > 0)?diffHeight:0;
-    float calHeight = 70.0 + diffHeight;
+    float calHeight = 64.0 + diffHeight;
     NSLog(@"heightForRowAtIndexPath \n %@ \n %f \n %f" , tweet.text, height, calHeight);
     return calHeight;
 }
