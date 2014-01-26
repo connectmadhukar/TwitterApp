@@ -79,4 +79,35 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)addTweet:(NSString *)status success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"status": status}];
+    
+    [self postPath:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
+}
+
+- (void)retweet:(NSString *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    //NSLog(@"retweet method called");
+    NSString *retweetUrl = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweetId];
+    //NSLog(@"retweet method called with url : %@", retweetUrl);
+     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": tweetId}];
+    [self postPath:retweetUrl parameters:params success:success failure:failure];
+}
+
+
+- (void)makeFavorite:(NSString *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    //NSLog(@"retweet method called");
+    NSString *favoriteUrl = @"1.1/favorites/create.json";
+    //NSLog(@"retweet method called with url : %@", retweetUrl);
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": tweetId}];
+    [self postPath:favoriteUrl parameters:params success:success failure:failure];
+}
+
+- (void)destroyFavorite:(NSString *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    //NSLog(@"retweet method called");
+    NSString *favoriteUrl = @"1.1/favorites/destroy.json";
+    //NSLog(@"retweet method called with url : %@", retweetUrl);
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": tweetId}];
+    [self postPath:favoriteUrl parameters:params success:success failure:failure];
+}
+
 @end

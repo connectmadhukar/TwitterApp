@@ -9,6 +9,7 @@
 #import "TimelineVC.h"
 #import "TweetCell.h"
 #import "TweetDetailedVC.h"
+#import "ComposeVC.h"
 
 @interface TimelineVC ()
 
@@ -36,7 +37,21 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    //self.navigationController.navigationBar.barTintColor = [UIColor cyanColor];
+    UIImage *image = [UIImage imageNamed: @"bird_blue_32.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
+    
+    self.navigationItem.titleView = imageView;
+    
+    image = [UIImage imageNamed: @"composeSmall.png"];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    //self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image  style:UIBarButtonItemStylePlain target:self action:@selector(onComposeButton)] ;
+    //self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    
+    //Register The Custom TweetCell
     UINib *toDoCustomCellNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
     [self.tableView registerNib:toDoCustomCellNib forCellReuseIdentifier:@"TweetCell"];
 
@@ -90,7 +105,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
    // NSLog(@"heightForRowAtIndexPath");
     Tweet *tweet = self.tweets[indexPath.row];
-    CGRect frame = [tweet.text boundingRectWithSize:CGSizeMake(200.0f, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]} context:nil];
+    //UITableViewCell *tvc = [tableView cellForRowAtIndexPath:indexPath];
+    float width = 200.0f;
+    if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+        width = 200.0f;
+    } else if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation)){
+        width = 300.0f;
+    }
+
+    CGRect frame = [tweet.text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]} context:nil];
     float height = frame.size.height;
 
     float diffHeight = ((34.0 + height) - 64.0);
@@ -166,6 +189,17 @@
 
 - (void)onSignOutButton {
     [User setCurrentUser:nil];
+}
+
+- (void)onComposeButton{
+    NSLog(@"onComposeButton");
+    //[self.navigationController presentViewController:[[ComposeVC alloc] init] animated:YES completion:nil];
+    [self.navigationController pushViewController:[[ComposeVC alloc] init] animated:YES];
+    /*
+    UIViewController *viewController = [[ComposeVC alloc] initWithNibName:@"ComposeVC" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navController animated:YES completion:nil];
+     */
 }
 
 - (void)reload {

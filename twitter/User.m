@@ -48,4 +48,38 @@ static User *_currentUser;
     }
 }
 
+- (NSString *)screenName {
+    return [self.data valueOrNilForKeyPath:@"screen_name"];
+}
+
+- (NSString *)name {
+    return [self.data valueOrNilForKeyPath:@"name"];
+}
+
+
+- (NSURL *)profileBGImageUrl {
+    return [NSURL URLWithString:[self.data valueOrNilForKeyPath:@"profile_background_image_url"]];
+}
+
+- (NSURL *)profileImageUrl {
+    return [NSURL URLWithString:[self.data valueOrNilForKeyPath:@"profile_image_url"]];
+}
+
+- (NSString *)favouritesCount {
+     return [NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"favourites_count"]];
+}
+
+- (NSString *)followersCount{
+    return [NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"followers_count"]];
+}
+
+- (NSString *)statusesCount{
+    return [NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"statuses_count"]];
+}
+
+- (NSString *)retweetCount {
+    return [NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"retweet_count"]];
+}
+
+
 @end

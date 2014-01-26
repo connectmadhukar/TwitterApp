@@ -7,8 +7,13 @@
 //
 
 #import "TweetDetailedVC.h"
+#import "TwitterClient.h"
+
 
 @interface TweetDetailedVC ()
+- (IBAction)rtweetButtonPressed:(id)sender;
+- (IBAction)favButtonPressed:(id)sender;
+- (IBAction)replyButtonPressed:(id)sender;
 
 @end
 
@@ -55,6 +60,16 @@
     [self.retweetCountDVLabel sizeToFit];
     self.favCountDVLabel.text = self.tweet.favoriteCount;
     [self.favCountDVLabel sizeToFit];
+    self.retweeted = self.tweet.retweeted;
+    self.favorited = self.tweet.favorited;
+    
+    if( self.retweeted != 0) {
+        [self.retweetDVButton setSelected:true];
+    }
+    if( self.favorited != 0) {
+        [self.favouritedDVButton setSelected:true];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,4 +78,44 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)rtweetButtonPressed:(id)sender {
+    NSLog(@"self.tweet.tweetID: %@", self.tweet.tweetID);
+    NSLog(@"onTweet");
+    //TODO: Tweet
+    TwitterClient *twitterClient = [TwitterClient instance];
+    if(self.retweeted == 0){
+        [twitterClient retweet:self.tweet.tweetID success:^(AFHTTPRequestOperation *operation, id response) {
+           NSLog(@"%@", response);
+            self.retweeted = 1;
+           [self.retweetDVButton setSelected:true];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+           NSLog(@"%@", error);
+        }];
+    }
+}
+
+- (IBAction)favButtonPressed:(id)sender {
+    TwitterClient *twitterClient = [TwitterClient instance];
+    if(self.favorited == 0){
+        [twitterClient makeFavorite:self.tweet.tweetID success:^(AFHTTPRequestOperation *operation, id response) {
+            NSLog(@"%@", response);
+            self.favorited = 1;
+            
+            [self.favouritedDVButton setSelected:true];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    } else {
+        [twitterClient destroyFavorite:self.tweet.tweetID success:^(AFHTTPRequestOperation *operation, id response) {
+            NSLog(@"%@", response);
+            self.favorited = 0;
+             [self.favouritedDVButton setSelected:false];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    }
+}
+
+- (IBAction)replyButtonPressed:(id)sender {
+}
 @end

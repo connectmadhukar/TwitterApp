@@ -41,6 +41,11 @@
 		D554215B1892DD51009F5EB5 /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = D55421521892DD51009F5EB5 /* retweet.png */; };
 		D554215C1892DD51009F5EB5 /* retweet_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = D55421531892DD51009F5EB5 /* retweet_hover.png */; };
 		D554215D1892DD51009F5EB5 /* retweet_on.png in Resources */ = {isa = PBXBuildFile; fileRef = D55421541892DD51009F5EB5 /* retweet_on.png */; };
+		D5542161189311D0009F5EB5 /* ComposeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D554215F189311D0009F5EB5 /* ComposeVC.m */; };
+		D5542162189311D0009F5EB5 /* ComposeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5542160189311D0009F5EB5 /* ComposeVC.xib */; };
+		D554216518934AF7009F5EB5 /* compose.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D554216318934AF7009F5EB5 /* compose.jpeg */; };
+		D554216618934AF7009F5EB5 /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = D554216418934AF7009F5EB5 /* compose.png */; };
+		D55421681893538B009F5EB5 /* composeSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = D55421671893538B009F5EB5 /* composeSmall.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +108,12 @@
 		D55421521892DD51009F5EB5 /* retweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet.png; sourceTree = "<group>"; };
 		D55421531892DD51009F5EB5 /* retweet_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet_hover.png; sourceTree = "<group>"; };
 		D55421541892DD51009F5EB5 /* retweet_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet_on.png; sourceTree = "<group>"; };
+		D554215E189311D0009F5EB5 /* ComposeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeVC.h; sourceTree = "<group>"; };
+		D554215F189311D0009F5EB5 /* ComposeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeVC.m; sourceTree = "<group>"; };
+		D5542160189311D0009F5EB5 /* ComposeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeVC.xib; sourceTree = "<group>"; };
+		D554216318934AF7009F5EB5 /* compose.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = compose.jpeg; sourceTree = "<group>"; };
+		D554216418934AF7009F5EB5 /* compose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose.png; sourceTree = "<group>"; };
+		D55421671893538B009F5EB5 /* composeSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = composeSmall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +231,9 @@
 				D5181EE71890FCD800B4AE6B /* TweetDetailedVC.h */,
 				D5181EE81890FCD800B4AE6B /* TweetDetailedVC.m */,
 				D5181EE91890FCD800B4AE6B /* TweetDetailedVC.xib */,
+				D554215E189311D0009F5EB5 /* ComposeVC.h */,
+				D554215F189311D0009F5EB5 /* ComposeVC.m */,
+				D5542160189311D0009F5EB5 /* ComposeVC.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -276,6 +290,9 @@
 		D554214B1892DD51009F5EB5 /* twitterIcons */ = {
 			isa = PBXGroup;
 			children = (
+				D55421671893538B009F5EB5 /* composeSmall.png */,
+				D554216318934AF7009F5EB5 /* compose.jpeg */,
+				D554216418934AF7009F5EB5 /* compose.png */,
 				D554214C1892DD51009F5EB5 /* bird_blue_32.png */,
 				D554214D1892DD51009F5EB5 /* favorite_hover.png */,
 				D554214E1892DD51009F5EB5 /* favorite_on.png */,
@@ -368,11 +385,15 @@
 			files = (
 				D554215D1892DD51009F5EB5 /* retweet_on.png in Resources */,
 				42CC89AB17B0C31900B6D34B /* SignedOutVC.xib in Resources */,
+				D55421681893538B009F5EB5 /* composeSmall.png in Resources */,
 				D554215B1892DD51009F5EB5 /* retweet.png in Resources */,
 				D55421571892DD51009F5EB5 /* favorite_on.png in Resources */,
+				D554216618934AF7009F5EB5 /* compose.png in Resources */,
 				D55421581892DD51009F5EB5 /* favoriteDef.png in Resources */,
 				D55421551892DD51009F5EB5 /* bird_blue_32.png in Resources */,
+				D554216518934AF7009F5EB5 /* compose.jpeg in Resources */,
 				D55421561892DD51009F5EB5 /* favorite_hover.png in Resources */,
+				D5542162189311D0009F5EB5 /* ComposeVC.xib in Resources */,
 				42CC893617AF4C6A00B6D34B /* InfoPlist.strings in Resources */,
 				42CC893E17AF4C6B00B6D34B /* Images.xcassets in Resources */,
 				D554215C1892DD51009F5EB5 /* retweet_hover.png in Resources */,
@@ -438,6 +459,7 @@
 				42CC89B117B0C7B800B6D34B /* Tweet.m in Sources */,
 				42CC89B417B0D63C00B6D34B /* RestObject.m in Sources */,
 				42CC895D17AF6FBB00B6D34B /* TimelineVC.m in Sources */,
+				D5542161189311D0009F5EB5 /* ComposeVC.m in Sources */,
 				42CC893C17AF4C6B00B6D34B /* AppDelegate.m in Sources */,
 				42CC893817AF4C6B00B6D34B /* main.m in Sources */,
 			);

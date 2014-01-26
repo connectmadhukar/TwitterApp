@@ -10,6 +10,11 @@
 
 @implementation Tweet
 
+- (NSString *)tweetID {
+    return [NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"id"]];
+}
+
+
 - (NSString *)text {
     return [self.data valueOrNilForKeyPath:@"text"];
 }
@@ -47,6 +52,16 @@
 - (NSString *)favoriteCount{
     NSLog(@"FavCount %@", [self.data valueOrNilForKeyPath:@"favorite_count"]);
     return [NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"favorite_count"]];
+}
+
+- (NSInteger )retweeted{
+     NSLog(@"retweeted %@", [NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"retweeted"]]);
+    return [[NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"retweeted"]] integerValue];
+}
+
+- (NSInteger )favorited {
+    NSLog(@"favorited %@", [NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"favorited"]]);
+    return [[NSString stringWithFormat:@"%@", [self.data valueOrNilForKeyPath:@"favorited"]] integerValue];
 }
 
 

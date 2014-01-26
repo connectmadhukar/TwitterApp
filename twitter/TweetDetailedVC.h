@@ -19,7 +19,10 @@
     @property (weak, nonatomic) IBOutlet UILabel *tweetTimeDVLabel;
     @property (weak, nonatomic) IBOutlet UILabel *retweetCountDVLabel;
     @property (weak, nonatomic) IBOutlet UILabel *favCountDVLabel;
-
+    @property (weak, nonatomic) IBOutlet UIButton *retweetDVButton;
+    @property (weak, nonatomic) IBOutlet UIButton *favouritedDVButton;
+    @property (nonatomic) NSInteger favorited;
+    @property (nonatomic) NSInteger retweeted;
     @property (nonatomic, strong) Tweet *tweet;
 
 @end
