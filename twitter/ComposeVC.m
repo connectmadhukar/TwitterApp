@@ -37,28 +37,38 @@
     [self.userNameCLabel sizeToFit];
     self.screenNameCLabel.text =  [@"@" stringByAppendingString:curUser.screenName];
     [self.screenNameCLabel sizeToFit];
-    
+    //self.tweetTextWidget.
     NSURLRequest *request = [NSURLRequest requestWithURL:curUser.profileImageUrl];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *imageData, NSError *connectionError) {
         //NSLog(@"Image fetch done");
         [self.curUserImage setImage:[UIImage imageWithData:imageData]];
     }];
-
-    
+    if( self.tweet == nil) {
+        NSLog(@" Not in Reply mode");
+    } else {
+        self.tweetTextWidget.text = [@"@" stringByAppendingString:self.tweet.screenName];
+    }
 }
 
 - (void)onTweetButton {
     NSLog(@"onTweet");
     //TODO: Tweet
     TwitterClient *twitterClient = [TwitterClient instance];
-    [twitterClient addTweet:self.tweetTextWidget.text success:^(AFHTTPRequestOperation *operation, id response) {
+    if( self.tweet == nil) {
+        [twitterClient addTweet:self.tweetTextWidget.text success:^(AFHTTPRequestOperation *operation, id response) {
         NSLog(@"%@", response);
-        //self.tweets = [Tweet tweetsWithArray:response];
-        //[self.tableView reloadData];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // Do nothing
     }];
+    } else {
+        [twitterClient replyTweet:self.tweetTextWidget.text tweetId:self.tweet.tweetID success:^(AFHTTPRequestOperation *operation, id response) {
+            NSLog(@"%@", response);
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            // Do nothing
+        }];
+    }
 }
 
 - (void)textViewDidChange:(UITextView *)textView {

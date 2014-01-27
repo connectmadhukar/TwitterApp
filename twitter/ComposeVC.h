@@ -12,6 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameCLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameCLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *curUserImage;
-@property (weak, nonatomic) IBOutlet UITextView *tweetTextWidget;
-
+@property (weak, nonatomic) IBOutlet UITextField *tweetTextWidget;
+@property (nonatomic, strong) Tweet *tweet;
 @end

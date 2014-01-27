@@ -85,6 +85,13 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
     [self postPath:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
 }
 
+- (void) replyTweet:(NSString *)status tweetId:(NSString *) tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"status": status}];
+    //, @"in_reply_to_status_id":tweetId
+    [params setObject:tweetId forKey:@"in_reply_to_status_id"];
+    [self postPath:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
+}
+
 - (void)retweet:(NSString *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     //NSLog(@"retweet method called");
     NSString *retweetUrl = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweetId];

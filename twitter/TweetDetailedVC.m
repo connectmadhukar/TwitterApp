@@ -8,6 +8,8 @@
 
 #import "TweetDetailedVC.h"
 #import "TwitterClient.h"
+#import "ComposeVC.h"
+
 
 
 @interface TweetDetailedVC ()
@@ -54,7 +56,18 @@
     self.tweetDVLabel.text = self.tweet.text;
     self.tweetDVLabel.numberOfLines = 0;
     [self.tweetDVLabel sizeToFit];
-    self.tweetTimeDVLabel.text = self.tweet.tweetTime;
+    
+    //Time of tweet
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"EEE MMM dd HH:mm:ss +zzzz yyyy"];
+    
+    NSDate *date = [dateFormat dateFromString:self.tweet.tweetTime];
+    
+    NSDateFormatter *displayFormat = [[NSDateFormatter alloc] init];
+    [displayFormat setDateFormat:@"MM/dd/yyy HH:mm"];
+    NSString *dateString = [displayFormat stringFromDate:date];
+    
+    self.tweetTimeDVLabel.text = dateString;
     [self.tweetTimeDVLabel sizeToFit];
     self.retweetCountDVLabel.text = self.tweet.retweetCount;
     [self.retweetCountDVLabel sizeToFit];
@@ -117,5 +130,11 @@
 }
 
 - (IBAction)replyButtonPressed:(id)sender {
+    ComposeVC *cvc = [[ComposeVC alloc] init];
+    
+    cvc.tweet = self.tweet;
+    [self.navigationController pushViewController:cvc animated:YES];
+
 }
+
 @end
