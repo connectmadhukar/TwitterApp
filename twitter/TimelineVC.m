@@ -202,6 +202,11 @@
      */
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"- (void)viewWillAppear:(BOOL)animated;");
+    [self reload];
+}
+
 - (void)reload {
     [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
         NSLog(@"%@", response);

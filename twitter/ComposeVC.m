@@ -31,13 +31,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweetButton)];
+    //self.navigationItem.title = @"140";
     User *curUser = [User currentUser];
     NSLog(@"Current User: %@", curUser);
     self.userNameCLabel.text = curUser.name;
     [self.userNameCLabel sizeToFit];
     self.screenNameCLabel.text =  [@"@" stringByAppendingString:curUser.screenName];
     [self.screenNameCLabel sizeToFit];
-    //self.tweetTextWidget.
+    self.tweetTextWidget.delegate = self;
     NSURLRequest *request = [NSURLRequest requestWithURL:curUser.profileImageUrl];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *imageData, NSError *connectionError) {
         //NSLog(@"Image fetch done");
@@ -47,6 +48,7 @@
         NSLog(@" Not in Reply mode");
     } else {
         self.tweetTextWidget.text = [@"@" stringByAppendingString:self.tweet.screenName];
+        self.charactersRemainingLabel.text = [NSString stringWithFormat:@"%d", (140 - self.tweetTextWidget.text.length)];
     }
 }
 
@@ -71,8 +73,14 @@
     }
 }
 
-- (void)textViewDidChange:(UITextView *)textView {
-    NSLog(@" textViewDidChange: %d", textView.text.length);
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    //NSLog(@" textViewDidChange: %d", textField.text.length);
+    NSString *resultString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if( resultString.length > 140 ) {
+        return NO;
+    }
+    self.charactersRemainingLabel.text = [NSString stringWithFormat:@"%d", (140 - resultString.length)];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

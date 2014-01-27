@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeVC">
             <connections>
+                <outlet property="charactersRemainingLabel" destination="ZA6-1H-wc8" id="qaa-bV-VCF"/>
                 <outlet property="curUserImage" destination="tTJ-Tz-NwE" id="kMc-es-xXg"/>
                 <outlet property="screenNameCLabel" destination="jPc-rJ-aY8" id="j3H-OM-mil"/>
                 <outlet property="tweetTextWidget" destination="XCF-wO-an9" id="Tkt-eb-3k5"/>
@@ -42,15 +43,21 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What's happening?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XCF-wO-an9">
-                    <rect key="frame" x="10" y="128" width="300" height="30"/>
+                    <rect key="frame" x="10" y="128" width="269" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZA6-1H-wc8">
+                    <rect key="frame" x="284" y="132" width="29" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="XCF-wO-an9" secondAttribute="trailing" constant="10" id="27S-ah-kjx"/>
                 <constraint firstItem="tTJ-Tz-NwE" firstAttribute="top" secondItem="1" secondAttribute="top" constant="70" id="2Yt-W9-i8t"/>
                 <constraint firstItem="XCF-wO-an9" firstAttribute="top" secondItem="tTJ-Tz-NwE" secondAttribute="bottom" constant="8" id="6Ma-wD-dEX"/>
                 <constraint firstItem="tTJ-Tz-NwE" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="DGS-En-Dfm"/>
@@ -58,6 +65,9 @@
                 <constraint firstItem="XCF-wO-an9" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="f3t-xZ-wzX"/>
                 <constraint firstItem="jPc-rJ-aY8" firstAttribute="top" secondItem="r0S-Um-Q86" secondAttribute="bottom" constant="5" id="g1X-yY-4km"/>
                 <constraint firstItem="jPc-rJ-aY8" firstAttribute="leading" secondItem="tTJ-Tz-NwE" secondAttribute="trailing" constant="10" id="gbF-xC-ddK"/>
+                <constraint firstAttribute="trailing" secondItem="ZA6-1H-wc8" secondAttribute="trailing" constant="7" id="huF-7z-pNb"/>
+                <constraint firstItem="ZA6-1H-wc8" firstAttribute="top" secondItem="1" secondAttribute="top" constant="132" id="lvQ-Fd-pZe"/>
+                <constraint firstItem="ZA6-1H-wc8" firstAttribute="leading" secondItem="XCF-wO-an9" secondAttribute="trailing" constant="5" id="zQx-Qp-8Ze"/>
                 <constraint firstItem="r0S-Um-Q86" firstAttribute="leading" secondItem="tTJ-Tz-NwE" secondAttribute="trailing" constant="10" id="zkq-rJ-bIr"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
