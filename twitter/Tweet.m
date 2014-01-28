@@ -40,7 +40,7 @@
 
 
 - (NSString *)tweetTime{
-    return [self.data valueOrNilForKeyPath:@"user.created_at"];
+    return [self.data valueOrNilForKeyPath:@"created_at"];
 }
 
 - (NSString *)retweetCount{

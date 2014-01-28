@@ -61,12 +61,19 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"EEE MMM dd HH:mm:ss +zzzz yyyy"];
     
-    NSDate *date = [dateFormat dateFromString:self.tweet.tweetTime];
+    NSDate *tweetDate = [dateFormat dateFromString:self.tweet.tweetTime];
     
     NSDateFormatter *displayFormat = [[NSDateFormatter alloc] init];
     [displayFormat setDateFormat:@"MM/dd/yyy HH:mm"];
-    NSString *dateString = [displayFormat stringFromDate:date];
+    NSString *dateString = [displayFormat stringFromDate:tweetDate];
     
+    NSDate *NowDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSSecondCalendarUnit
+                                               fromDate:tweetDate
+                                                 toDate:NowDate
+                                                options:0];
+    NSLog(@"%@", components);
     self.tweetTimeDVLabel.text = dateString;
     [self.tweetTimeDVLabel sizeToFit];
     self.retweetCountDVLabel.text = self.tweet.retweetCount;

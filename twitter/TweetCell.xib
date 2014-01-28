@@ -32,6 +32,13 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ScreenName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2x-Gf-TdA">
+                        <rect key="frame" x="105" y="8" width="54" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </label>
                     <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, assaasdsdasasda asd asdasdsad" translatesAutoresizingMaskIntoConstraints="NO" id="cmF-7I-86c">
                         <rect key="frame" x="70" y="25" width="240" height="56"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -43,17 +50,20 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="cmF-7I-86c" secondAttribute="trailing" constant="10" id="5XO-gF-510"/>
                     <constraint firstItem="QyR-fW-mmb" firstAttribute="leading" secondItem="GcD-XV-xjY" secondAttribute="leading" constant="5" id="E6z-hU-jOz"/>
+                    <constraint firstItem="k2x-Gf-TdA" firstAttribute="top" secondItem="GcD-XV-xjY" secondAttribute="top" constant="8" id="H9Q-ZB-FRI"/>
                     <constraint firstItem="bYP-1y-kXV" firstAttribute="top" secondItem="GcD-XV-xjY" secondAttribute="top" constant="5" id="HmI-p4-GK9"/>
                     <constraint firstAttribute="bottom" secondItem="cmF-7I-86c" secondAttribute="bottom" constant="10" id="WrN-64-HaJ"/>
                     <constraint firstItem="cmF-7I-86c" firstAttribute="top" secondItem="GcD-XV-xjY" secondAttribute="top" constant="25" id="aVN-OM-CJj"/>
                     <constraint firstItem="QyR-fW-mmb" firstAttribute="top" secondItem="GcD-XV-xjY" secondAttribute="top" constant="2" id="f3B-Wh-amF"/>
                     <constraint firstItem="cmF-7I-86c" firstAttribute="leading" secondItem="GcD-XV-xjY" secondAttribute="leading" constant="70" id="iGd-JX-4bG"/>
+                    <constraint firstItem="k2x-Gf-TdA" firstAttribute="leading" secondItem="bYP-1y-kXV" secondAttribute="trailing" constant="3" id="wAx-9U-m1q"/>
                     <constraint firstItem="bYP-1y-kXV" firstAttribute="leading" secondItem="QyR-fW-mmb" secondAttribute="trailing" constant="5" id="xIn-Cs-0TI"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="profileImageView" destination="QyR-fW-mmb" id="hll-Hx-t3c"/>
                 <outlet property="tweetText" destination="cmF-7I-86c" id="hSR-fd-MS4"/>
+                <outlet property="tweeterScreenNameLabel" destination="k2x-Gf-TdA" id="EXn-df-wxn"/>
                 <outlet property="twittersName" destination="bYP-1y-kXV" id="ODm-KW-AZz"/>
             </connections>
         </tableViewCell>

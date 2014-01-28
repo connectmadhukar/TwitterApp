@@ -89,9 +89,25 @@
     Tweet *tweet = self.tweets[indexPath.row];
     cell.tweetText.text = tweet.text;
     [cell.tweetText sizeToFit];
-    cell.twittersName.text = tweet.screenName;
+    cell.twittersName.text = tweet.name;
     [cell.twittersName sizeToFit];
+    cell.tweeterScreenNameLabel.text = [@"@" stringByAppendingString:tweet.screenName];
+    [cell.tweeterScreenNameLabel sizeToFit];
     
+    
+    //Time of tweet
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"EEE MMM dd HH:mm:ss +zzzz yyyy"];
+    
+    NSDate *tweetDate = [dateFormat dateFromString:tweet.tweetTime];
+    NSDate *NowDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar
+            components:NSSecondCalendarUnit
+                                               fromDate:tweetDate
+                                                 toDate:NowDate
+                                                options:0];
+    NSLog(@"tweetDate: %@ components:%@", tweetDate,components);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:tweet.profileImageUrl];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *imageData, NSError *connectionError) {
@@ -118,7 +134,7 @@
 
     float diffHeight = ((34.0 + height) - 64.0);
     diffHeight = ( diffHeight > 0)?diffHeight:0;
-    float calHeight = 64.0 + diffHeight;
+    float calHeight = 67.0 + diffHeight;
     NSLog(@"heightForRowAtIndexPath \n %@ \n %f \n %f" , tweet.text, height, calHeight);
     return calHeight;
 }
