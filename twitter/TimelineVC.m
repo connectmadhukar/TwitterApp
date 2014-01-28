@@ -102,12 +102,37 @@
     NSDate *tweetDate = [dateFormat dateFromString:tweet.tweetTime];
     NSDate *NowDate = [NSDate date];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [calendar
-            components:NSSecondCalendarUnit
-                                               fromDate:tweetDate
-                                                 toDate:NowDate
-                                                options:0];
-    NSLog(@"tweetDate: %@ components:%@", tweetDate,components);
+    NSDateComponents *components = [calendar components:NSSecondCalendarUnit
+                                             fromDate:tweetDate
+                                             toDate:NowDate
+                                             options:0];
+    NSInteger seconds = [components second];
+    NSInteger minutes = seconds / 60;
+    NSInteger remSeconds = seconds - (minutes*60);
+    NSInteger hours = minutes / 60;
+    NSInteger remMinutes = minutes - (hours*60);
+    NSInteger days = hours / 24 ;
+    NSInteger remHours = hours - (days*24);
+    NSMutableString *timeGap = [[NSMutableString alloc] init];
+    if( days != 0 ) {
+        [timeGap appendFormat:@"%ldD ",(long)days];
+    }
+    if( remHours != 0 ) {
+        [timeGap appendFormat:@"%ldH ",(long)remHours];
+    }
+    if( remMinutes !=0 ) {
+        [timeGap appendFormat:@"%ldM ",(long)remMinutes];
+    }
+    if( remSeconds != 0 ) {
+        [timeGap appendFormat:@"%ldS",(long)remSeconds];
+    }
+    //NSLog(@"seconds:%@", timeGap);
+    //NSLog(@"seconds:%ld, minutes:%ld, hours:%ld, days:%ld", (long)seconds, (long)minutes, (long)hours, (long)days);
+    //NSLog(@"seconds:%ld, minutes:%ld, hours:%ld, days:%ld", (long)remSeconds, (long)remMinutes, (long)remHours, (long)days);
+
+    cell.tweetAgeLabel.text = [@"" stringByAppendingString:timeGap];
+    [cell.tweetAgeLabel sizeToFit];
+    
     
     NSURLRequest *request = [NSURLRequest requestWithURL:tweet.profileImageUrl];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *imageData, NSError *connectionError) {

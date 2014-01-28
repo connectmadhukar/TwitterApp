@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *twittersName;
 @property (weak, nonatomic) IBOutlet UITextView *tweetText;
 @property (weak, nonatomic) IBOutlet UILabel *tweeterScreenNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tweetAgeLabel;
 
 @end
